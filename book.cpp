@@ -1,30 +1,26 @@
-#ifndef BOOK
-#define BOOK
 #include <iostream>
-#include <string>
-using namespace std;
- 
-class Book{
-    private:
-    string title;
-    string author;
-    string isbn;
- 
-    public:
-    Book(): title(""), author(""), isbn(""){}
-    Book(string title, string author, string isbn):title(title), author(author),isbn(isbn){}
-    ~Book(){
-        cout<<"Destroying book: "<<title<<endl;
+#include "book.h"
+
+
+    Book::Book()
+    :title(""),author(Author("","")),publicationYear(0){}
+    Book::Book(string bookTitle,Author bookAuthor,int year,const vector<Chapter> &bookChapters)
+    :title(bookTitle),author(bookAuthor),publicationYear(year),chapters(bookChapters){}
+    void Book::addChapter(const Chapter &chapter){
+        chapters.push_back(chapter);
     }
-    string getTitle(){
+    void Book::displayInfo(){
+
+    }
+    string Book::getTitle(){
         return title;
     }
-    string getAuthor(){
+    Author Book::getAuthor(){
         return author;
     }
-    string getIsbn(){
-        return isbn;
+    int Book::getPublicationYear(){
+        return publicationYear;
     }
- 
-};
-#endif
+    vector<Chapter> &Book::getChapters(){
+        return chapters;
+    }
